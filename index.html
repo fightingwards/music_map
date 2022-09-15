@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bulma -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<link rel="icon" type="image/png" href="assets/images/simon-8-ball.png">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+	<title>Simon Techworks | Geolocation Services</title>
+</head>
+
+<body>
+	<section class="section p-5">
+
+		<div class="container">
+			<h1 class="title is-size-1 mb-2 has-text-light" style="display: inline-block" >Geolocation Data Dashboard</h1>
+
+			<p><a class="is-size-5 mb-2 has-text-info" href="https://simonphd.me" target=_blank >Simon Techworks</a> (V3.3 build 42)</P>
+
+			<p class="subtitle is-size-5 mt-3 has-text-light">Our Geolocation Service features <strong class="has-text-info">IP Data, Geo Map, and Browser Local Storage Test App</strong><br>
+		</div>
+
+	</section>
+
+	<!-- Local storage counter -->
+	<h3 class="title is-size-4 has-text-info">Local Storage Test:</h3>
+
+	<button onclick="increaseCounter()" type="button">Increase Count</button>
+
+	<button onclick="decreaseCounter()" type="button">Decrease Count</button>
+
+	<button onclick="clearCounter()" type="button">Clear Local Storage</button>
+
+	<p class="is-size-6 mt-2 has-text-light" >Count:</p>
+
+	<p id="total"></p>
+
+	<p class="is-size-6 mt-2 has-text-light">Click on "Increase Count" to increase number</p>
+
+	<p class="is-size-6 mt-2 has-text-light">Click on "Decrease Count" to decrease number</p>
+
+	<p class="is-size-6 mt-2 has-text-light">Click on "Clear Local Storage" to clear the local storage</p>
+	
+	<p class="is-size-6 mt-2 mb-5 has-text-light">Total should resume on click even after refreshing or closing the browser</p>
+
+	<!-- IP geolocation api -->
+	<div class="container">
+		<h3 class="title is-size-4 has-text-info">Browser IP Geolocation Data: </h3>
+		<div class="is-size-6 mb-5 has-text-info p-4" id="result" ></div>
+	</div>
+
+	<h3 class="title is-size-4 my-5 py-2 has-text-info">Google Geolocation Map (click "Pan to Current Location"): </h3>
+
+	<!-- Google map -->
+	<div id="map"></div>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPgBfg8QpfQX1EYoIF0akG9hVU3m81WQ&callback=initMap&v=weekly"
+		defer>
+	</script>
+
+	<!-- JS script -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+</html>
