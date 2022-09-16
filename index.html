@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./assets/style.css">
+	
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+	<title>Let's Go...</title>
+</head>
+
+<body>
+    <header>
+        <h1>Let's Go Dash</h1>
+    </header>
+	
+    <!-- left column -->
+    <div id="searchConatiner">
+        <h2>Search for an event</h2>
+        <form id="searchForm">
+            <input type="text" id="userInput" placeholder="Austin">
+			<input id="newButton" type="button" value="Search">
+        </form>
+
+        <hr>
+
+        <h3>Quick Search</h3>
+        <button>Austin</button>
+        <button>New York</button>
+        <button>Miami</button>
+        <button>Columbus</button>
+    </div>
+
+	
+    <!-- middle column -->
+    <div id="resultsPane">
+		<h3 id="resultCity">Austin</h3>
+
+
+        <div id="resultRow">
+            <div>Venue Name: <span id="vName"></span></div>
+            <div>Capacity: <span id="capacity"></span></div>
+            <div>Venue Address: <span id="vStreet"></span></div>
+            <div><span id="vZip"></span></div>
+        </div>
+
+        <!-- <div id="resultRow">
+            <div id="resultName">Event Name</div>
+            <div id="resultimg">Dummy img</div>
+            <div id="resultLoc">Location of event</div>
+            <div id="resultDate">Date of Event</div>
+            <div id="resultTime">Time of event</div>
+        </div> -->
+
+        <!-- <div id="resultRow">
+            <div id="resultName">Event Name</div>
+            <div id="resultimg">Dummy img</div>
+            <div id="resultLoc">Location of event</div>
+            <div id="resultDate">Date of Event</div>
+            <div id="resultTime">Time of event</div>
+        </div>
+        <div id="resultRow">
+            <div id="resultName">Event Name</div>
+            <div id="resultimg">Dummy img</div>
+            <div id="resultLoc">Location of event</div>
+            <div id="resultDate">Date of Event</div>
+            <div id="resultTime">Time of event</div>
+        </div>
+        <div id="resultRow">
+            <div id="resultName">Event Name</div>
+            <div id="resultimg">Dummy img</div>
+            <div id="resultLoc">Location of event</div>
+            <div id="resultDate">Date of Event</div>
+            <div id="resultTime">Time of event</div>
+        </div>
+        <div id="resultRow">
+            <div id="resultName">Event Name</div>
+            <div id="resultimg">Dummy img</div>
+            <div id="resultLoc">Location of event</div>
+            <div id="resultDate">Date of Event</div>
+            <div id="resultTime">Time of event</div>
+        </div> -->
+        
+	</div>
+
+    <!-- right column -->
+    <div id="mapPane"></div>
+
+	<!-- JS script -->
+	<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <!-- <script src="./node_modules/jquery/dist/jquery.min.js"></script> -->
+	<script src="./assets/script.js"></script>
+
+</body>
+
+</html>
