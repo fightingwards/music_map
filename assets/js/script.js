@@ -10,11 +10,11 @@ const events = 'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjY
 // my link= seatGeek+'venues?city='+userInput+'&client_id='+clientId
 // end testing of endpoints
 
-var newButton    = document.getElementById('newButton');                                // grab button
+var newButton    = document.getElementById('newButton'); 
+
 
 var secondSuperAwesome = function secondUserValue() {
-    
-    var userInput = document.getElementById('userInput').value;                        
+    var userInput = document.getElementById('userInput').value;                                 // grab button    
     console.log(userInput);                                                            
 
     fetch(seatGeek+userInput+concerts+'&client_id='+clientId)                     // fetch the venue api                 
@@ -28,11 +28,11 @@ var secondSuperAwesome = function secondUserValue() {
 
     .then(function (locRes) {
 
-        var resultCity = locRes.events[0].venue.display_location;
-        var resultName = locRes.events[0].title;
-        var resultImg = locRes.events[0].performers[0].image
-        var resultLoc = locRes.events[0].venue.name+', '+locRes.events[0].venue.address+' '+resultCity;
-        var resultDate = locRes.events[0].datetime_local;
+        var resultCity      = locRes.events[0].venue.display_location;
+        var resultName      = locRes.events[0].title;
+        var resultImg       = locRes.events[0].performers[0].image
+        var resultLoc       = locRes.events[0].venue.name+', '+locRes.events[0].venue.address+' '+resultCity;
+        var resultDate      = locRes.events[0].datetime_local;
         var purchaseTickets = locRes.events[0].url;
       
         $('#resultCity').html(resultCity);
@@ -43,10 +43,21 @@ var secondSuperAwesome = function secondUserValue() {
         $('#purchaseTickets').html(purchaseTickets);
        
         console.log(locRes.events)
-    })                                                              
+    }) 
+    
+    // setting userInput in local storage
+    localStorage.setItem('City', userInput);
+    myStorage();
 }
 
-newButton.addEventListener("click", secondSuperAwesome);                                     // on click on the button then run the superAwesome function
+function myStorage() {
+  var cityFromLs = localStorage.getItem('City');
+  var popOne = document.getElementById('popOne');
+  popOne.innerHTML = cityFromLs;
+}
+
+newButton.addEventListener("click", secondSuperAwesome);
+popOne.addEventListener("click", secondSuperAwesome);
 
 // Google map with geolocator api
 let map, infoWindow;
