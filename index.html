@@ -11,43 +11,50 @@
 
 <body>
     <header>
-        <h1>Let's Go Dash</h1>
+        <h1>MUSIC MAP</h1>
     </header>
 	
-    <!-- left column -->
-    <div id="searchConatiner">
-        <h2>Search for an event</h2>
-        <form id="searchForm">
-            <input type="text" id="userInput" placeholder="Enter City Here">
-			<input id="newButton" type="button" value="Search">
-        </form>
-
-        <hr>
-
-        <h3>Quick Search</h3>
-        <button>Austin</button>
-        <button>New York</button> 
-        <button>Miami</button>
-        <button>Columbus</button>
-    </div>
-
-	
-    <!-- middle column -->
-    <div id="resultsPane">
-		<h3 id="resultCity">Austin</h3>
-
-        <div id="resultRow">
-            <div id="resultName">Event Name</div>
-            <div id="resultImg">Dummy img</div>
-            <div id="resultLoc">Location of event</div>
-            <div id="resultDate">Date of Event</div>
-            <div id="purchaseTickets">Buy Now</div>
+    <section>
+        <div class="columns">
+            <!-- left column -->
+            <div class="column">
+                <div id="searchConatiner">
+                    <h3>Search for an event</h3>
+                    <form id="searchForm">
+                        <input id="newSearch" type="text" id="userInput" placeholder="Enter City Here">
+                        <input id="newButton" type="button" value="Search">
+                    </form>
+            
+                    <h2>Quick Search</h2>
+                    <button>Austin</button>
+                    <button>New York</button> 
+                    <button>Miami</button>
+                    <button>Columbus</button>
+                </div>
+            </div>
+            <!-- middle column -->
+            <div class="column">
+                    <div id="resultsPane">
+                        <h3 id="resultCity">Results</h3>
+                
+                        <div class="notification">
+                            <div id="resultRow">
+                                <div id="resultName">Event Name</div>
+                                <div id="resultImg">Dummy img</div>
+                                <div id="resultLoc">Location of event</div>
+                                <div id="resultDate">Date of Event</div>
+                                <div id="purchaseTickets">Buy Now</div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- right column -->
+            <div class="column">
+                <div id="map"></div>
+            </div>
         </div>
-        
-	</div>
+    </section>
 
-   <!-- right column -->
-	<div id="map"></div>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPgBfg8QpfQX1EYoIF0akG9hVU3m81WQ&callback=initMap&v=weekly"
 		defer>
