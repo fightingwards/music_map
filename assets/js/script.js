@@ -52,22 +52,25 @@ var secondSuperAwesome = function secondUserValue() {
         
         const band = i.title;
         const pic = i.performers[0].image;
-        const dt = i.datetime_local.split('T')
-        const venue = i.venue.name_v2
-        const local = i.venue.address + "<br>" + i.venue.extended_address
-        const tickets = i.url
+        const date = i.datetime_local.split('T').slice(0);
+        const time = i.datetime_local.split('T').slice(1);
+        // const ampm = ;
+        const venue = i.venue.name_v2;
+        const local = i.venue.address + "<br>" + i.venue.extended_address;
+        const tickets = i.url;
         
         
         $('#resultRow').append(`
           <img src="${pic}" alt="picture of band">
           <p>${band}<p>
-          <p>Date and Time: ${dt}<p>
+          <p>Date: ${date}<p> 
+          <p>Time: ${time}<p>
           <p>At ${venue}<p>
           <p>Located:<br>${local}
           <br><a href="${tickets}">Click here for Tickets!</a>
           `);
           
-          // console.log(i.venue.address + i.venue.extended_address)
+          // console.log(i.datetime_local.split('T').slice(1))
       });
 
     })                                                              
