@@ -29,20 +29,50 @@ var secondSuperAwesome = function secondUserValue() {
     .then(function (locRes) {
 
         var resultCity = locRes.events[0].venue.display_location;
-        var resultName = locRes.events[0].title;
-        var resultImg = locRes.events[0].performers[0].image
-        var resultLoc = locRes.events[0].venue.name+', '+locRes.events[0].venue.address+' '+resultCity;
-        var resultDate = locRes.events[0].datetime_local;
-        var purchaseTickets = locRes.events[0].url;
+        // var resultName = locRes.events[0].title;
+        // var resultImg = locRes.events[0].performers[0].image
+        // var resultLoc = locRes.events[0].venue.name+', '+locRes.events[0].venue.address+' '+resultCity;
+        // var resultDate = locRes.events[0].datetime_local;
+        // var purchaseTickets = locRes.events[0].url;
       
         $('#resultCity').html(resultCity);
-        $('#resultName').html(resultName);
-        $('#resultImg').html(resultImg);
-        $('#resultLoc').html(resultLoc);
-        $('#resultDate').html(resultDate);
-        $('#purchaseTickets').html(purchaseTickets);
+        // $('#resultName').html(resultName);
+        // $('#resultImg').html(resultImg);
+        // $('#resultLoc').html(resultLoc);
+        // $('#resultDate').html(resultDate);
+        // $('#purchaseTickets').html(purchaseTickets);
        
         console.log(locRes.events)
+
+        
+        
+        
+        // elena's code
+      locRes.events.forEach((i) => {
+        
+        const band = i.title;
+        const pic = i.performers[0].image;
+        const date = i.datetime_local.split('T').slice(0);
+        const time = i.datetime_local.split('T').slice(1);
+        // const ampm = ;
+        const venue = i.venue.name_v2;
+        const local = i.venue.address + "<br>" + i.venue.extended_address;
+        const tickets = i.url;
+        
+        
+        $('#resultRow').append(`
+          <img src="${pic}" alt="picture of band">
+          <p>${band}<p>
+          <p>Date: ${date}<p> 
+          <p>Time: ${time}<p>
+          <p>At ${venue}<p>
+          <p>Located:<br>${local}
+          <br><a href="${tickets}">Click here for Tickets!</a>
+          `);
+          
+          // console.log(i.datetime_local.split('T').slice(1))
+      });
+
     })                                                              
 }
 
