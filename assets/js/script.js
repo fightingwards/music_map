@@ -60,7 +60,7 @@ var secondSuperAwesome = function secondUserValue() {
         .then(response => response.json())
         .then(data => {
           //console.log(data.results[0].formatted_address)
-          createMarker(data.results[0].formatted_address)
+          createMarker(data.results[0].geometry.location)
         })
 
     })
@@ -90,7 +90,7 @@ let map, infoWindow;
     console.log(place)
 
     // var placeLoc = place.geometry.location;
-    /* new google.maps.Marker({
+   const marker = new google.maps.Marker({
       position: place,
       map,
       title: "Test"
@@ -99,7 +99,7 @@ let map, infoWindow;
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(place.name);
       infowindow.open(map, this);
-    }); */
+    });
   }
 
 // Google map with geolocator api
