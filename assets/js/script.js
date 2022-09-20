@@ -59,8 +59,10 @@ var secondSuperAwesome = function secondUserValue() {
         fetch(googleMaps+resultLat+','+resultLon+'&key='+google_clientID)
         .then(response => response.json())
         .then(data => {
-          //console.log(data.results[0].formatted_address)
-          createMarker(data.results[0].geometry.location)
+          for(let i = 0; i < 10; i++){
+            createMarker(data.results[i].geometry.location)
+          }
+          
         })
 
     })
