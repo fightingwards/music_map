@@ -23,7 +23,6 @@ let map, infoWindow; // Map variables
 
 var secondSuperAwesome = function secondUserValue() {
   var userInput = document.getElementById('userInput').value;
-  console.log(userInput);
 
   fetch(seatGeek + userInput + concerts + '&client_id=' + clientId) // fetch the venue api
     .then(function (response) {
@@ -41,8 +40,6 @@ var secondSuperAwesome = function secondUserValue() {
       var resultCity = locRes.events[0].venue.display_location;
 
       $('#resultCity').html(resultCity);
-
-      console.log(locRes.events);
 
       // elena's code
       locRes.events.forEach((i) => {
