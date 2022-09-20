@@ -60,11 +60,9 @@ var secondSuperAwesome = function secondUserValue() {
           <p>Time: ${time}<p>
           <p>At ${venue}<p>
           <p>Located:<br>${local}
-          <br><a href="${tickets}">Click here for Tickets!</a>
+          <br><a href="${tickets}">Click here for Tickets!</a><br>
           `;
       });
-
-      console.log(bandsHTML);
 
       eventList.html(bandsHTML);
 
