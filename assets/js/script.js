@@ -3,20 +3,17 @@ const clientId   = 'MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';                      
 const seatSecret = 'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc';  // my secret (not using below)
 const seatGeek   = 'https://api.seatgeek.com/2/events?venue.city=';                                        // seat geek api url
 const concerts   = '&taxonomies.name=concert';
-// testing endpoints
-
-const events = 'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
-
-// my link= seatGeek+'venues?city='+userInput+'&client_id='+clientId
-// end testing of endpoints
+const events     = 'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
 
 var newButton    = document.getElementById('newButton'); 
 
+var cityFromLs   = localStorage.getItem('City');
 
-var secondSuperAwesome = function secondUserValue() {
-    var userInput = document.getElementById('userInput').value;                                 // grab button    
-    console.log(userInput);                                                            
+var favs        = [];
+var quickSearch = document.getElementById('quickSearch');
 
+function secondSuperAwesome() {
+    var userInput = document.getElementById('userInput').value;
     fetch(seatGeek+userInput+concerts+'&client_id='+clientId)                     // fetch the venue api                 
 
     .then(function (response) {
@@ -44,20 +41,26 @@ var secondSuperAwesome = function secondUserValue() {
        
         console.log(locRes.events)
     }) 
-    
-    // setting userInput in local storage
-    localStorage.setItem('City', userInput);
-    myStorage();
 }
 
-function myStorage() {
-  var cityFromLs = localStorage.getItem('City');
-  var popOne = document.getElementById('popOne');
-  popOne.innerHTML = cityFromLs;
-}
+$('#newButton').on("click", function (){
+  // write the user input to the list item 
+  var userInput =  document.getElementById('userInput').value;
+  var quickKey = $(this).parent().siblings('#quickList').children(('#1'));
+  console.log(quickKey.attr('id'));
+  quickKey.html(userInput);
 
-newButton.addEventListener("click", secondSuperAwesome);
-popOne.addEventListener("click", secondSuperAwesome);
+  // setting the entered text in local storage
+  localStorage.setItem(quickKey.attr('id'), userInput);
+
+  secondSuperAwesome();
+})
+
+// getting the value from localstorage and setting the li to that value
+for (var i = 1; i < 5; i++) {
+  var li = $(`#${i}`).html(localStorage.getItem(i));
+  li.on("click", secondSuperAwesome); // on click of the newly created li re-run the superAwesome function
+};
 
 // Google map with geolocator api
 let map, infoWindow;
