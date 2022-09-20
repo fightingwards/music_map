@@ -3,6 +3,12 @@ const clientId   = 'MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';                      
 const seatSecret = 'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc';  // my secret (not using below)
 const seatGeek   = 'https://api.seatgeek.com/2/events?venue.city=';                                        // seat geek api url
 const concerts   = '&taxonomies.name=concert';
+
+// Google Maps Geolocation API
+
+const google_clientID = 'AIzaSyDtXV5-Kqkz5NrfGqcN7GlNbdP5DYRhG8Y';
+const googleMaps = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+
 // testing endpoints
 
 const events = 'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
@@ -32,6 +38,10 @@ var secondSuperAwesome = function secondUserValue() {
         var resultName = locRes.events[0].title;
         var resultImg = locRes.events[0].performers[0].image
         var resultLoc = locRes.events[0].venue.name+', '+locRes.events[0].venue.address+' '+resultCity;
+        var resultAddress = locRes.events[0].venue.address;
+        //var resultLatLng = locRes.events[0].venue.location;
+        var resultLat = locRes.events[0].venue.location.lat;
+        var resultLon = locRes.events[0].venue.location.lon;
         var resultDate = locRes.events[0].datetime_local;
         var purchaseTickets = locRes.events[0].url;
       
@@ -39,19 +49,58 @@ var secondSuperAwesome = function secondUserValue() {
         $('#resultName').html(resultName);
         $('#resultImg').html(resultImg);
         $('#resultLoc').html(resultLoc);
+        $('#resultAddress').html(resultAddress);
+        //$('#resultLatLon').html(resultLatLon);
+        $('#resultLat').html(resultLat);
+        $('#resultLon').html(resultLon);
         $('#resultDate').html(resultDate);
         $('#purchaseTickets').html(purchaseTickets);
-       
-        console.log(locRes.events)
-    })                                                              
+
+        fetch(googleMaps+resultLat+','+resultLon+'&key='+google_clientID)
+        .then(response => response.json())
+        .then(data => console.log(data.results[0].formatted_address))
+
+    })
+    
+/*     .then(function (eventMarker){
+        fetch(googleMaps+resultLatLon+'&client_id='+google_clientID) 
+
+        console.log(eventMarker)
+    }) */
 }
 
 newButton.addEventListener("click", secondSuperAwesome);                                     // on click on the button then run the superAwesome function
 
-// Google map with geolocator api
 let map, infoWindow;
+    
+    function initMap(){
+        map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 17,
+        center: { lat: 30.266666, lng: -97.733330},
+        });
+    }
 
-function initMap() {
+  function createMarker(place) {
+    var latNumber = locRes.events[0].venue.location.lat();
+    var lngNumber = locRes.events[0].venue.location.lng();
+
+    console.log(place)
+
+    // var placeLoc = place.geometry.location;
+    new google.maps.Marker({
+      position: place,
+      map,
+      title: "Test"
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+    });
+  }
+
+// Google map with geolocator api
+/* function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 30.266666, lng: -97.733330},
     zoom: 13,
@@ -87,7 +136,7 @@ function initMap() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
-}
+} */
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
