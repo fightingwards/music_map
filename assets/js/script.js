@@ -66,7 +66,7 @@ var secondSuperAwesome = function secondUserValue() {
 
       console.log(bandsHTML);
 
-      eventList.innerHTML = bandsHTML;
+      eventList.html(bandsHTML);
 
       fetch(
         googleMaps + resultLat + ',' + resultLon + '&key=' + google_clientID,
