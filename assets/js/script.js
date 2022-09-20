@@ -34,34 +34,12 @@ var secondSuperAwesome = function secondUserValue() {
 
     .then(function (locRes) {
       var resultCity = locRes.events[0].venue.display_location;
-      var resultName = locRes.events[0].title;
-      var resultImg = locRes.events[0].performers[0].image;
-      var resultLoc =
-        locRes.events[0].venue.name +
-        ', ' +
-        locRes.events[0].venue.address +
-        ' ' +
-        resultCity;
-      var resultAddress = locRes.events[0].venue.address;
-      //var resultLatLng = locRes.events[0].venue.location;
       var resultLat = locRes.events[0].venue.location.lat;
       var resultLon = locRes.events[0].venue.location.lon;
-      var resultDate = locRes.events[0].datetime_local;
-      var purchaseTickets = locRes.events[0].url;
 
       var resultCity = locRes.events[0].venue.display_location;
-      // var resultName = locRes.events[0].title;
-      // var resultImg = locRes.events[0].performers[0].image
-      // var resultLoc = locRes.events[0].venue.name+', '+locRes.events[0].venue.address+' '+resultCity;
-      // var resultDate = locRes.events[0].datetime_local;
-      // var purchaseTickets = locRes.events[0].url;
 
       $('#resultCity').html(resultCity);
-      // $('#resultName').html(resultName);
-      // $('#resultImg').html(resultImg);
-      // $('#resultLoc').html(resultLoc);
-      // $('#resultDate').html(resultDate);
-      // $('#purchaseTickets').html(purchaseTickets);
 
       console.log(locRes.events);
 
@@ -71,7 +49,6 @@ var secondSuperAwesome = function secondUserValue() {
         const pic = i.performers[0].image;
         const date = i.datetime_local.split('T').slice(0);
         const time = i.datetime_local.split('T').slice(1);
-        // const ampm = ;
         const venue = i.venue.name_v2;
         const local = i.venue.address + '<br>' + i.venue.extended_address;
         const tickets = i.url;
@@ -85,8 +62,6 @@ var secondSuperAwesome = function secondUserValue() {
           <p>Located:<br>${local}
           <br><a href="${tickets}">Click here for Tickets!</a>
           `);
-
-        // console.log(i.datetime_local.split('T').slice(1))
       });
 
       fetch(
@@ -126,55 +101,6 @@ function createMarker(place, title) {
     infowindow.setContent(place.name);
     infowindow.open(map, this);
   });
-}
-
-// Google map with geolocator api
-/* function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 30.266666, lng: -97.733330},
-    zoom: 13,
-  });
-  infoWindow = new google.maps.InfoWindow();
-
-  const locationButton = document.createElement("button");
-
-  locationButton.textContent = "Pan to Current Location";
-  locationButton.classList.add("custom-map-control-button");
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  locationButton.addEventListener("click", () => {
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
-          map.setCenter(pos);
-        },
-        () => {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  });
-} */
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? 'Error: The Geolocation service failed.'
-      : "Error: Your browser doesn't support geolocation.",
-  );
-  infoWindow.open(map);
 }
 
 window.initMap = initMap;
