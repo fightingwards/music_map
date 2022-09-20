@@ -87,11 +87,10 @@ function initMap() {
 }
 
 function createMarker(place, title) {
-  console.log(title);
   const marker = new google.maps.Marker({
     position: place,
     map,
-    title: 'Test',
+    title: title,
   });
 
   google.maps.event.addListener(marker, 'click', function () {
