@@ -58,7 +58,10 @@ var secondSuperAwesome = function secondUserValue() {
 
         fetch(googleMaps+resultLat+','+resultLon+'&key='+google_clientID)
         .then(response => response.json())
-        .then(data => console.log(data.results[0].formatted_address))
+        .then(data => {
+          //console.log(data.results[0].formatted_address)
+          createMarker(data.results[0].formatted_address)
+        })
 
     })
     
@@ -81,13 +84,13 @@ let map, infoWindow;
     }
 
   function createMarker(place) {
-    var latNumber = locRes.events[0].venue.location.lat();
-    var lngNumber = locRes.events[0].venue.location.lng();
+   /*  var latNumber = locRes.events[0].venue.location.lat();
+    var lngNumber = locRes.events[0].venue.location.lng(); */
 
     console.log(place)
 
     // var placeLoc = place.geometry.location;
-    new google.maps.Marker({
+    /* new google.maps.Marker({
       position: place,
       map,
       title: "Test"
@@ -96,7 +99,7 @@ let map, infoWindow;
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(place.name);
       infowindow.open(map, this);
-    });
+    }); */
   }
 
 // Google map with geolocator api
