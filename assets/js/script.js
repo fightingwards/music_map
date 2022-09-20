@@ -65,8 +65,9 @@ var secondSuperAwesome = function secondUserValue() {
       )
         .then((response) => response.json())
         .then((data) => {
+          console.log(locRes);
           for (let i = 0; i < 10; i++) {
-            createMarker(data.results[i].geometry.location);
+            createMarker(data.results[i].geometry.location, locRes.events[i]);
           }
         });
     });
@@ -83,7 +84,8 @@ function initMap() {
   });
 }
 
-function createMarker(place) {
+function createMarker(place, title) {
+  console.log(title);
   const marker = new google.maps.Marker({
     position: place,
     map,
