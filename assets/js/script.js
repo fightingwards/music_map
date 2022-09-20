@@ -62,16 +62,8 @@ var secondSuperAwesome = function secondUserValue() {
           for(let i = 0; i < 10; i++){
             createMarker(data.results[i].geometry.location)
           }
-          
         })
-
     })
-    
-/*     .then(function (eventMarker){
-        fetch(googleMaps+resultLatLon+'&client_id='+google_clientID) 
-
-        console.log(eventMarker)
-    }) */
 }
 
 newButton.addEventListener("click", secondSuperAwesome);                                     // on click on the button then run the superAwesome function
@@ -86,12 +78,6 @@ let map, infoWindow;
     }
 
   function createMarker(place) {
-   /*  var latNumber = locRes.events[0].venue.location.lat();
-    var lngNumber = locRes.events[0].venue.location.lng(); */
-
-    console.log(place)
-
-    // var placeLoc = place.geometry.location;
    const marker = new google.maps.Marker({
       position: place,
       map,
