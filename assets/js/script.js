@@ -65,9 +65,11 @@ var secondSuperAwesome = function secondUserValue() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(locRes);
           for (let i = 0; i < 10; i++) {
-            createMarker(data.results[i].geometry.location, locRes.events[i]);
+            createMarker(
+              data.results[i].geometry.location,
+              locRes.events[i].title,
+            );
           }
         });
     });
