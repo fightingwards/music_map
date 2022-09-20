@@ -19,6 +19,7 @@ const events =
 // end testing of endpoints
 
 var newButton = document.getElementById('newButton'); // grab button
+let map, infoWindow; // Map variables
 
 var secondSuperAwesome = function secondUserValue() {
   var userInput = document.getElementById('userInput').value;
@@ -81,8 +82,6 @@ var secondSuperAwesome = function secondUserValue() {
 
 newButton.addEventListener('click', secondSuperAwesome); // on click on the button then run the superAwesome function
 
-let map, infoWindow;
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 5,
@@ -97,9 +96,12 @@ function createMarker(place, title) {
     title: title,
   });
 
+  var infowindow = new google.maps.InfoWindow({
+    content: title,
+  });
+
   google.maps.event.addListener(marker, 'click', function () {
-    infowindow.setContent(place.name);
-    infowindow.open(map, this);
+    infowindow.open(map, marker);
   });
 }
 
