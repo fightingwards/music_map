@@ -1,7 +1,6 @@
 // Seat Geek
 const clientId = 'MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx'; // my ID
-const seatSecret =
-  'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc'; // my secret (not using below)
+const seatSecret = 'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc'; // my secret (not using below)
 const seatGeek = 'https://api.seatgeek.com/2/events?venue.city='; // seat geek api url
 const concerts = '&taxonomies.name=concert';
 
@@ -10,18 +9,12 @@ const concerts = '&taxonomies.name=concert';
 const google_clientID = 'AIzaSyDtXV5-Kqkz5NrfGqcN7GlNbdP5DYRhG8Y';
 const googleMaps = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
 
-// testing endpoints
-
-const events =
-  'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
-
-// my link= seatGeek+'venues?city='+userInput+'&client_id='+clientId
-// end testing of endpoints
+const events = 'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
 
 var newButton = document.getElementById('newButton'); // grab button
 let map, infoWindow; // Map variables
 
-var secondSuperAwesome = function secondUserValue() {
+function secondSuperAwesome() {
   var userInput = document.getElementById('userInput').value;
 
   fetch(seatGeek + userInput + concerts + '&client_id=' + clientId) // fetch the venue api
@@ -40,7 +33,7 @@ var secondSuperAwesome = function secondUserValue() {
       var resultCity = locRes.events[0].venue.display_location;
 
       $('#resultCity').html(resultCity);
-
+      let index = 0;
       // elena's code
       locRes.events.forEach((i) => {
         const band = i.title;
@@ -53,39 +46,51 @@ var secondSuperAwesome = function secondUserValue() {
 
         $('#resultRow').append(`
           <img src="${pic}" alt="picture of band">
-          <p id="1"><i class="fa-regular fa-heart favSave"></i><p>
-          <p id="band">${band}<p>
-          <p><i class="fa-solid fa-heart"></i> Date: ${date}<p> 
+          <p id="save-${index}"><i class="fa-regular fa-heart favSave${index}"></i><p>
+          <p class="band">${band}<p>
+          <p>Date: ${date}<p> 
           <p>Time: ${time}<p>
           <p>At ${venue}<p>
           <p>Located:<br>${local}
           <br><a href="${tickets}">Click here for Tickets!</a>
           `);
+          index++;
       });
       
-      var favSave = $('.favSave');
-      console.log(favSave);
-      favSave.on('click', function() {
+      function handleSave() {
         console.log("bam!");
         console.log(this);
 
         // this.removeClass('fa-regular').addClass('fa-solid'); uncaught typeerror: this.removeClass is not a function
-        favSave.removeClass('fa-regular').addClass('fa-solid');
-
-        // var whatIsThis = $(this).parent().parent().children(('#1'))[0];
-        var favBand = $(this).parent().siblings('#band')[0];
-        // var favBand = $(this).parent().siblings('#band')[0].text();
+        $(this).removeClass('fa-regular').addClass('fa-solid');
+        var currentIndex = $(this).parent().attr('id').split('-')[1];
+        
+        var favBand = $(this).parent().siblings('.band')[currentIndex].firstChild.data;
         console.log(favBand);
+        console.log($(this).parent().siblings('.band') + ' this one');
+
+        var favBands = $(this).parent().siblings('.band');
+        console.log(favBands);
 
         var favKey = $(this).parent().attr('id');
         console.log(favKey);
 
         // set local storage to the key and band name
         localStorage.setItem(favKey, favBand);
-
         
+        displaySavedFav();
+      }
 
-      })
+      $('.favSave0').on('click', handleSave);
+      $('.favSave1').on('click', handleSave);
+      $('.favSave2').on('click', handleSave);
+      $('.favSave3').on('click', handleSave);
+      $('.favSave4').on('click', handleSave);
+      $('.favSave5').on('click', handleSave);
+      $('.favSave6').on('click', handleSave);
+      $('.favSave7').on('click', handleSave);
+      $('.favSave8').on('click', handleSave);
+      $('.favSave9').on('click', handleSave);
 
       fetch(
         googleMaps + resultLat + ',' + resultLon + '&key=' + google_clientID,
@@ -102,7 +107,22 @@ var secondSuperAwesome = function secondUserValue() {
     });
 };
 
+// getting the value from localstorage and setting the li to that value
+  function displaySavedFav() {
+    for (var i = 0; i < 10; i++) {
+      $(`#ql-${i}`).html(localStorage.getItem(`save-${i}`));  
+    }
+  }
+
+  displaySavedFav();
+
 newButton.addEventListener('click', secondSuperAwesome); // on click on the button then run the superAwesome function
+
+// my localstorage issues
+// unable to select items other than the 1st item favSave
+// need a loop after above is solved
+// nothing populates under favorites until after the page reloads or a 2nd search is done
+// click any heart and all the hearts from the search results are changed
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
