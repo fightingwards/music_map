@@ -4,8 +4,8 @@
 body {
 	height: 100vh;
 	text-align: center;
-  background-color: #f29cac;
-  color: black;
+  background-image: url("../images/background.png");
+  color: #777;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -49,7 +49,8 @@ body {
 }
 
 header {
-  background-color: #be7482;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
   font-size: 50px;
 }
 
@@ -58,8 +59,25 @@ section{
   font-size: 35px;
 }
 
+h1 {
+  background-color: #4aaaa5;
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  width: 400px;
+  margin: auto;
+}
+
 h2{
   margin-top: 30px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #4aaaa5;
+  font-weight: bold;
+}
+
+h3{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #4aaaa5;
+  font-weight: bold;
 }
 
 button{
@@ -71,15 +89,19 @@ button{
   font-family: Arial, Helvetica, sans-serif;
   width: 250px;
   height: 40px;
+  background: #4aaaa5;
+  color: #fff;
+  border: 0 none;
 }
 
 button:hover{
-  background: rgb(235, 235, 235);;
+  background: #5e7f7e;
 }
 
 .notification{
-  background-color: #be7482;
   font-size: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }
 
 #newSearch{
@@ -91,6 +113,7 @@ button:hover{
   border-radius: 10px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+  border: 1px solid #ddd;
 }
 
 #newButton{
@@ -99,8 +122,11 @@ button:hover{
   font-family: Arial, Helvetica, sans-serif;
   height: 30px;
   width: 100px;
+  background: #4aaaa5;
+  color: #fff;
+  border: 0 none;
 }
 
 #newButton:hover{
-  background: rgb(235, 235, 235);;
+  background: #5e7f7e;
 }
