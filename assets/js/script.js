@@ -53,14 +53,39 @@ var secondSuperAwesome = function secondUserValue() {
 
         $('#resultRow').append(`
           <img src="${pic}" alt="picture of band">
-          <p>${band}<p>
-          <p>Date: ${date}<p> 
+          <p id="1"><i class="fa-regular fa-heart favSave"></i><p>
+          <p id="band">${band}<p>
+          <p><i class="fa-solid fa-heart"></i> Date: ${date}<p> 
           <p>Time: ${time}<p>
           <p>At ${venue}<p>
           <p>Located:<br>${local}
           <br><a href="${tickets}">Click here for Tickets!</a>
           `);
       });
+      
+      var favSave = $('.favSave');
+      console.log(favSave);
+      favSave.on('click', function() {
+        console.log("bam!");
+        console.log(this);
+
+        // this.removeClass('fa-regular').addClass('fa-solid'); uncaught typeerror: this.removeClass is not a function
+        favSave.removeClass('fa-regular').addClass('fa-solid');
+
+        // var whatIsThis = $(this).parent().parent().children(('#1'))[0];
+        var favBand = $(this).parent().siblings('#band')[0];
+        // var favBand = $(this).parent().siblings('#band')[0].text();
+        console.log(favBand);
+
+        var favKey = $(this).parent().attr('id');
+        console.log(favKey);
+
+        // set local storage to the key and band name
+        localStorage.setItem(favKey, favBand);
+
+        
+
+      })
 
       fetch(
         googleMaps + resultLat + ',' + resultLon + '&key=' + google_clientID,
