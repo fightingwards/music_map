@@ -88,17 +88,6 @@ function secondSuperAwesome() {
         displaySavedFav();
       }
 
-      $('.favSave0').on('click', handleSave);
-      $('.favSave1').on('click', handleSave);
-      $('.favSave2').on('click', handleSave);
-      $('.favSave3').on('click', handleSave);
-      $('.favSave4').on('click', handleSave);
-      $('.favSave5').on('click', handleSave);
-      $('.favSave6').on('click', handleSave);
-      $('.favSave7').on('click', handleSave);
-      $('.favSave8').on('click', handleSave);
-      $('.favSave9').on('click', handleSave);
-
       eventList.html(bandsHTML);
 
       fetch(
@@ -157,3 +146,14 @@ function createMarker(place, title) {
 }
 
 window.initMap = initMap;
+
+$('.favSave0').on('click', handleSave);
+$('.favSave1').on('click', handleSave);
+$('.favSave2').on('click', handleSave);
+$('.favSave3').on('click', handleSave);
+$('.favSave4').on('click', handleSave);
+$('.favSave5').on('click', handleSave);
+$('.favSave6').on('click', handleSave);
+$('.favSave7').on('click', handleSave);
+$('.favSave8').on('click', handleSave);
+$('.favSave9').on('click', handleSave);
