@@ -1,6 +1,7 @@
 // Seat Geek
 const clientId = 'MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx'; // my ID
-const seatSecret = 'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc'; // my secret (not using below)
+const seatSecret =
+  'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc'; // my secret (not using below)
 const seatGeek = 'https://api.seatgeek.com/2/events?venue.city='; // seat geek api url
 const concerts = '&taxonomies.name=concert';
 
@@ -9,10 +10,13 @@ const concerts = '&taxonomies.name=concert';
 const google_clientID = 'AIzaSyDtXV5-Kqkz5NrfGqcN7GlNbdP5DYRhG8Y';
 const googleMaps = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
 
-const events = 'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
+const events =
+  'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
 
 var newButton = document.getElementById('newButton'); // grab button
 let map, infoWindow; // Map variables
+
+let eventList = $('#resultRow');
 
 function secondSuperAwesome() {
   var userInput = document.getElementById('userInput').value;
@@ -32,7 +36,7 @@ function secondSuperAwesome() {
       var resultLon = locRes.events[0].venue.location.lon;
 
       $('#resultCity').html(resultCity);
-      
+
       let index = 0;
       // elena's code
       locRes.events.forEach((i) => {
@@ -44,7 +48,9 @@ function secondSuperAwesome() {
         const local = i.venue.address + '<br>' + i.venue.extended_address;
         const tickets = i.url;
 
-        bandsHTML= bandsHTML + `
+        bandsHTML =
+          bandsHTML +
+          `
           <img src="${pic}" alt="picture of band">
           <p id="save-${index}"><i class="fa-regular fa-heart favSave${index}"></i><p>
           <p class="band">${band}<p>
@@ -53,20 +59,20 @@ function secondSuperAwesome() {
           <p>At ${venue}<p>
           <p>Located:<br>${local}
           <br><a href="${tickets}">Click here for Tickets!</a>
-          `);
-          index++;
-
+          `;
+        index++;
       });
-      
+
       function handleSave() {
-        console.log("bam!");
+        console.log('bam!');
         console.log(this);
 
         // this.removeClass('fa-regular').addClass('fa-solid'); uncaught typeerror: this.removeClass is not a function
         $(this).removeClass('fa-regular').addClass('fa-solid');
         var currentIndex = $(this).parent().attr('id').split('-')[1];
-        
-        var favBand = $(this).parent().siblings('.band')[currentIndex].firstChild.data;
+
+        var favBand = $(this).parent().siblings('.band')[currentIndex]
+          .firstChild.data;
         console.log(favBand);
         console.log($(this).parent().siblings('.band') + ' this one');
 
@@ -78,7 +84,7 @@ function secondSuperAwesome() {
 
         // set local storage to the key and band name
         localStorage.setItem(favKey, favBand);
-        
+
         displaySavedFav();
       }
 
@@ -108,16 +114,16 @@ function secondSuperAwesome() {
           }
         });
     });
-};
+}
 
 // getting the value from localstorage and setting the li to that value
-  function displaySavedFav() {
-    for (var i = 0; i < 10; i++) {
-      $(`#ql-${i}`).html(localStorage.getItem(`save-${i}`));  
-    }
+function displaySavedFav() {
+  for (var i = 0; i < 10; i++) {
+    $(`#ql-${i}`).html(localStorage.getItem(`save-${i}`));
   }
+}
 
-  displaySavedFav();
+displaySavedFav();
 
 newButton.addEventListener('click', secondSuperAwesome); // on click on the button then run the superAwesome function
 
