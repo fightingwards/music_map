@@ -58,7 +58,7 @@ function secondSuperAwesome() {
           <p>Time: ${time}<p>
           <p>At ${venue}<p>
           <p>Located:<br>${local}
-          <br><a href="${tickets}">Click here for Tickets!</a>
+          <br><a href="${tickets}">Click here for Tickets!</a><br>
           `;
         index++;
       });
