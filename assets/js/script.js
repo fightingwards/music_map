@@ -63,6 +63,8 @@ function secondSuperAwesome() {
         index++;
       });
 
+      eventList.html(bandsHTML);
+
       function handleSave() {
         console.log('bam!');
         console.log(this);
@@ -88,7 +90,16 @@ function secondSuperAwesome() {
         displaySavedFav();
       }
 
-      eventList.html(bandsHTML);
+      $('.favSave0').on('click', handleSave);
+      $('.favSave1').on('click', handleSave);
+      $('.favSave2').on('click', handleSave);
+      $('.favSave3').on('click', handleSave);
+      $('.favSave4').on('click', handleSave);
+      $('.favSave5').on('click', handleSave);
+      $('.favSave6').on('click', handleSave);
+      $('.favSave7').on('click', handleSave);
+      $('.favSave8').on('click', handleSave);
+      $('.favSave9').on('click', handleSave);
 
       fetch(
         googleMaps + resultLat + ',' + resultLon + '&key=' + google_clientID,
@@ -146,14 +157,3 @@ function createMarker(place, title) {
 }
 
 window.initMap = initMap;
-
-$('.favSave0').on('click', handleSave);
-$('.favSave1').on('click', handleSave);
-$('.favSave2').on('click', handleSave);
-$('.favSave3').on('click', handleSave);
-$('.favSave4').on('click', handleSave);
-$('.favSave5').on('click', handleSave);
-$('.favSave6').on('click', handleSave);
-$('.favSave7').on('click', handleSave);
-$('.favSave8').on('click', handleSave);
-$('.favSave9').on('click', handleSave);
