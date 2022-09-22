@@ -25,6 +25,16 @@ body {
 }
 
 /* Id selectors */
+
+#userInput {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#newButton {
+  border-radius: 10px;
+}
+
 #result {
 	background-color: #0c111a;
 	border-radius: 10px;

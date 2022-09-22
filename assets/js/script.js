@@ -14,6 +14,7 @@ const events =
   'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
 
 var newButton = document.getElementById('newButton'); // grab button
+
 let map, infoWindow; // Map variables
 
 let eventList = $('#resultRow');
@@ -51,14 +52,16 @@ function secondSuperAwesome() {
         bandsHTML =
           bandsHTML +
           `
-          <img src="${pic}" alt="picture of band">
-          <p id="save-${index}"><i class="fa-regular fa-heart favSave${index}"></i><p>
-          <p class="band">${band}<p>
-          <p>Date: ${date}<p> 
-          <p>Time: ${time}<p>
-          <p>At ${venue}<p>
-          <p>Located:<br>${local}
-          <br><a href="${tickets}">Click here for Tickets!</a><br>
+          <div class="is-flex">
+          <div id="save-${index}"><i class="fa-regular fa-heart favSave${index}"></i></div>
+          <div class="band">${band}</div>
+          <div><img src="${pic}" alt="picture of band"></div>
+          <div>Date: ${date}</div> 
+          <div>Time: ${time}</div>
+          <div>At ${venue}</div>
+          <div>Located:<br>${local}
+          <br><a href="${tickets}">Click here for Tickets!</a></div>
+          </div>
           `;
         index++;
       });
@@ -126,12 +129,6 @@ function displaySavedFav() {
 displaySavedFav();
 
 newButton.addEventListener('click', secondSuperAwesome); // on click on the button then run the superAwesome function
-
-// my localstorage issues
-// unable to select items other than the 1st item favSave
-// need a loop after above is solved
-// nothing populates under favorites until after the page reloads or a 2nd search is done
-// click any heart and all the hearts from the search results are changed
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
