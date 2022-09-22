@@ -21,8 +21,11 @@ const events =
 var newButton = document.getElementById('newButton'); // grab button
 let map, infoWindow; // Map variables
 
+let eventList = $('#resultRow');
+
 var secondSuperAwesome = function secondUserValue() {
   var userInput = document.getElementById('userInput').value;
+  let bandsHTML = '';
 
   fetch(seatGeek + userInput + concerts + '&client_id=' + clientId) // fetch the venue api
     .then(function (response) {
@@ -37,9 +40,8 @@ var secondSuperAwesome = function secondUserValue() {
       var resultLat = locRes.events[0].venue.location.lat;
       var resultLon = locRes.events[0].venue.location.lon;
 
-      var resultCity = locRes.events[0].venue.display_location;
-
       $('#resultCity').html(resultCity);
+
 
       // elena's code
       locRes.events.forEach((i) => {
@@ -51,16 +53,18 @@ var secondSuperAwesome = function secondUserValue() {
         const local = i.venue.address + '<br>' + i.venue.extended_address;
         const tickets = i.url;
 
-        $('#resultRow').append(`
+        bandsHTML= bandsHTML + `
           <img src="${pic}" alt="picture of band">
           <p>${band}<p>
           <p>Date: ${date}<p> 
           <p>Time: ${time}<p>
           <p>At ${venue}<p>
           <p>Located:<br>${local}
-          <br><a href="${tickets}">Click here for Tickets!</a>
-          `);
+          <br><a href="${tickets}">Click here for Tickets!</a><br>
+          `;
       });
+
+      eventList.html(bandsHTML);
 
       fetch(
         googleMaps + resultLat + ',' + resultLon + '&key=' + google_clientID,
