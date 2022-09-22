@@ -58,10 +58,12 @@ function secondSuperAwesome() {
           <p>Time: ${time}<p>
           <p>At ${venue}<p>
           <p>Located:<br>${local}
-          <br><a href="${tickets}">Click here for Tickets!</a>
+          <br><a href="${tickets}">Click here for Tickets!</a><br>
           `;
         index++;
       });
+
+      eventList.html(bandsHTML);
 
       function handleSave() {
         console.log('bam!');
@@ -98,8 +100,6 @@ function secondSuperAwesome() {
       $('.favSave7').on('click', handleSave);
       $('.favSave8').on('click', handleSave);
       $('.favSave9').on('click', handleSave);
-
-      eventList.html(bandsHTML);
 
       fetch(
         googleMaps + resultLat + ',' + resultLon + '&key=' + google_clientID,
