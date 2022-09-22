@@ -52,15 +52,15 @@ function secondSuperAwesome() {
         bandsHTML =
           bandsHTML +
           `
-          <div class="is-flex">
-          <div id="save-${index}"><i class="fa-regular fa-heart favSave${index}"></i></div>
-          <div class="band">${band}</div>
-          <div><img src="${pic}" alt="picture of band"></div>
-          <div>Date: ${date}</div> 
-          <div>Time: ${time}</div>
-          <div>At ${venue}</div>
-          <div>Located:<br>${local}
-          <br><a href="${tickets}">Click here for Tickets!</a></div>
+          <div class="is-flex is-flex-wrap-wrap is-justify-content-center">
+          <div id="save-${index}"><i class="fa-regular fa-heart favSave${index} mr-1"></i></div>
+          <div id="evtBand" class="band">${band}</div>
+          <div id="bandImg"><img src="${pic}" alt="picture of band"></div>
+          <div id="evtDate">Date: ${date}</div> 
+          <div id="evtTime">Time: ${time}</div>
+          <div id="evtVenue">At ${venue}</div>
+          <div class="mb-3" id="evtLocation">Located:<br>${local}
+          <br><a id="evtTickets" href="${tickets}">Click here for Tickets!</a></div>
           </div>
           `;
         index++;

@@ -47,11 +47,17 @@ body {
 	word-wrap: break-word;
 }
 
+#bandImg {
+  order: -1;
+  width: 100%;
+}
+
+#evtDate, #evtTime, #evtVenue {
+  width: 100%;
+}
+
 #map {
   height: 400px;
-  width: 42%;
 	margin-left: auto;
   margin-right: auto;
-	border-radius: 10px;
-	box-shadow: 4px 4px hsl(204, 86%, 53%);
 }
