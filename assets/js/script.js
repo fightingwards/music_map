@@ -77,7 +77,7 @@ function secondSuperAwesome() {
         // set local storage to the key and band name
         localStorage.setItem(favKey, favBand);
 
-        // displaySavedFav();
+        displaySavedFav();
       }
 
       $('.favSave0').on('click', handleSave);
