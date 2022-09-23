@@ -70,23 +70,15 @@ function secondSuperAwesome() {
 
       function handleSave() {
         $(this).removeClass('fa-regular').addClass('fa-solid');
-        var currentIndex = $(this).parent().attr('id').split('-')[1];
+        var favBand = $(this).parent().siblings('.band')[0].firstChild.data;
 
-        var favBand = $(this).parent().siblings('.band')
-        // [currentIndex].firstChild.data;
-        console.log(favBand);
-        console.log($(this).parent().siblings('.band') + ' this one');
+        // var favKey = $(this).parent().attr('id');
+        // console.log(favKey);
 
-        var favBands = $(this).parent().siblings('.band');
-        console.log(favBands);
+        // // set local storage to the key and band name
+        // localStorage.setItem(favKey, favBand);
 
-        var favKey = $(this).parent().attr('id');
-        console.log(favKey);
-
-        // set local storage to the key and band name
-        localStorage.setItem(favKey, favBand);
-
-        displaySavedFav();
+        // displaySavedFav();
       }
 
       $('.favSave0').on('click', handleSave);
