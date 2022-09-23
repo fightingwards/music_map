@@ -53,14 +53,14 @@ function secondSuperAwesome() {
           bandsHTML +
           `
           <div class="is-flex is-flex-wrap-wrap is-justify-content-center">
-          <div id="save-${index}"><i class="fa-regular fa-heart favSave${index} mr-1"></i></div>
-          <div id="evtBand" class="band">${band}</div>
-          <div id="bandImg"><img src="${pic}" alt="picture of band"></div>
-          <div id="evtDate">Date: ${date}</div> 
-          <div id="evtTime">Time: ${time}</div>
-          <div id="evtVenue">At ${venue}</div>
-          <div class="mb-3" id="evtLocation">Located:<br>${local}
-          <br><a id="evtTickets" href="${tickets}">Click here for Tickets!</a></div>
+            <div id="save-${index}"><i class="fa-regular fa-heart favSave${index} mr-1"></i></div>
+            <div id="evtBand" class="band">${band}</div>
+            <div id="bandImg"><img src="${pic}" alt="picture of band"></div>
+            <div id="evtDate">Date: ${date}</div> 
+            <div id="evtTime">Time: ${time}</div>
+            <div id="evtVenue">At ${venue}</div>
+            <div class="mb-3" id="evtLocation">Located:<br>${local}
+            <br><a id="evtTickets" href="${tickets}">Click here for Tickets!</a></div>
           </div>
           `;
         index++;
@@ -69,15 +69,11 @@ function secondSuperAwesome() {
       eventList.html(bandsHTML);
 
       function handleSave() {
-        console.log('bam!');
-        console.log(this);
-
-        // this.removeClass('fa-regular').addClass('fa-solid'); uncaught typeerror: this.removeClass is not a function
         $(this).removeClass('fa-regular').addClass('fa-solid');
         var currentIndex = $(this).parent().attr('id').split('-')[1];
 
-        var favBand = $(this).parent().siblings('.band')[currentIndex]
-          .firstChild.data;
+        var favBand = $(this).parent().siblings('.band')
+        // [currentIndex].firstChild.data;
         console.log(favBand);
         console.log($(this).parent().siblings('.band') + ' this one');
 
