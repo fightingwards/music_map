@@ -1,102 +1,143 @@
 // Seat Geek
-const clientId   = 'MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';                              // my ID
-const seatSecret = 'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc';  // my secret (not using below)
-const seatGeek   = 'https://api.seatgeek.com/2/events?venue.city=';                                        // seat geek api url
-const concerts   = '&taxonomies.name=concert';
-// testing endpoints
+const clientId = 'MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx'; // my ID
+const seatSecret =
+  'c0c6077e57c5b2704b0249ea93b976cad9ab01c4b6e98f47231b108372000adc'; // my secret (not using below)
+const seatGeek = 'https://api.seatgeek.com/2/events?venue.city='; // seat geek api url
+const concerts = '&taxonomies.name=concert';
 
-const events = 'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
+// Google Maps Geolocation API
 
-// my link= seatGeek+'venues?city='+userInput+'&client_id='+clientId
-// end testing of endpoints
+const google_clientID = 'AIzaSyDtXV5-Kqkz5NrfGqcN7GlNbdP5DYRhG8Y';
+const googleMaps = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
 
-var newButton    = document.getElementById('newButton');                                // grab button
+const events =
+  'austin&taxonomies.name=concert&client_id=MjkwNzYwNjh8MTY2MzA4MjYzNi4yNDI1OTEx';
 
-var secondSuperAwesome = function secondUserValue() {
-    
-    var userInput = document.getElementById('userInput').value;                        
-    console.log(userInput);                                                            
+var newButton = document.getElementById('newButton'); // grab button
 
-    fetch(seatGeek+userInput+concerts+'&client_id='+clientId)                     // fetch the venue api                 
+let map, infoWindow; // Map variables
 
+let eventList = $('#resultRow');
+
+function secondSuperAwesome() {
+  var userInput = document.getElementById('userInput').value;
+  let bandsHTML = '';
+
+  fetch(seatGeek + userInput + concerts + '&client_id=' + clientId) // fetch the venue api
     .then(function (response) {
-        if(!response.ok) {
-            throw response.json();
-        }
-        return response.json();
-    }) 
+      if (!response.ok) {
+        throw response.json();
+      }
+      return response.json();
+    })
 
     .then(function (locRes) {
+      var resultCity = locRes.events[0].venue.display_location;
+      var resultLat = locRes.events[0].venue.location.lat;
+      var resultLon = locRes.events[0].venue.location.lon;
 
-        var resultCity = locRes.events[0].venue.display_location;
-        var resultName = locRes.events[0].title;
-        var resultImg = locRes.events[0].performers[0].image
-        var resultLoc = locRes.events[0].venue.name+', '+locRes.events[0].venue.address+' '+resultCity;
-        var resultDate = locRes.events[0].datetime_local;
-        var purchaseTickets = locRes.events[0].url;
-      
-        $('#resultCity').html(resultCity);
-        $('#resultName').html(resultName);
-        $('#resultImg').html(resultImg);
-        $('#resultLoc').html(resultLoc);
-        $('#resultDate').html(resultDate);
-        $('#purchaseTickets').html(purchaseTickets);
-       
-        console.log(locRes.events)
-    })                                                              
+      $('#resultCity').html(resultCity);
+
+      let index = 0;
+      // elena's code
+      locRes.events.forEach((i) => {
+        const band = i.title;
+        const pic = i.performers[0].image;
+        const date = i.datetime_local.split('T').slice(0);
+        const time = i.datetime_local.split('T').slice(1);
+        const venue = i.venue.name_v2;
+        const local = i.venue.address + '<br>' + i.venue.extended_address;
+        const tickets = i.url;
+
+        bandsHTML =
+          bandsHTML +
+          `
+            <div class="column container is-full-mobile is-one-third-tablet one-quarter-desktop is-flex is-flex-wrap-wrap is-justify-content-center">
+              <div id="save-${index}"><i class="fa-regular fa-heart favSave${index} mr-1"></i></div>
+              <div id="evtBand" class="band">${band}</div>
+              <div id="bandImg"><img src="${pic}" alt="picture of band"></div>
+              <div id="evtDate">Date: ${date}</div> 
+              <div id="evtTime">Time: ${time}</div>
+              <div id="evtVenue">At ${venue}</div>
+              <div class="mb-3" id="evtLocation">Located:<br>${local}
+              <br><a id="evtTickets" href="${tickets}">Click here for Tickets!</a></div>
+            </div>
+          `;
+        index++;
+      });
+
+      eventList.html(bandsHTML);
+
+      function handleSave() {
+        $(this).removeClass('fa-regular').addClass('fa-solid');
+
+        var favBand = $(this).parent().siblings('.band')[0].firstChild.data;
+        var favKey = $(this).parent().attr('id');
+
+        // set local storage to the key and band name
+        localStorage.setItem(favKey, favBand);
+
+        displaySavedFav();
+      }
+
+      $('.favSave0').on('click', handleSave);
+      $('.favSave1').on('click', handleSave);
+      $('.favSave2').on('click', handleSave);
+      $('.favSave3').on('click', handleSave);
+      $('.favSave4').on('click', handleSave);
+      $('.favSave5').on('click', handleSave);
+      $('.favSave6').on('click', handleSave);
+      $('.favSave7').on('click', handleSave);
+      $('.favSave8').on('click', handleSave);
+      $('.favSave9').on('click', handleSave);
+
+      fetch(
+        googleMaps + resultLat + ',' + resultLon + '&key=' + google_clientID,
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          for (let i = 0; i < 10; i++) {
+            createMarker(
+              data.results[i].geometry.location,
+              locRes.events[i].title,
+            );
+          }
+        });
+    });
 }
 
-newButton.addEventListener("click", secondSuperAwesome);                                     // on click on the button then run the superAwesome function
+// getting the value from localstorage and setting the li to that value
+function displaySavedFav() {
+  for (var i = 0; i < 10; i++) {
+    $(`#ql-${i}`).html(localStorage.getItem(`save-${i}`));
+  }
+}
 
-// Google map with geolocator api
-let map, infoWindow;
+displaySavedFav();
+
+newButton.addEventListener('click', secondSuperAwesome); // on click on the button then run the superAwesome function
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 30.266666, lng: -97.733330},
-    zoom: 13,
-  });
-  infoWindow = new google.maps.InfoWindow();
-
-  const locationButton = document.createElement("button");
-
-  locationButton.textContent = "Pan to Current Location";
-  locationButton.classList.add("custom-map-control-button");
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  locationButton.addEventListener("click", () => {
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
-          map.setCenter(pos);
-        },
-        () => {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 5,
+    center: { lat: 30.266666, lng: -97.73333 },
   });
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
+function createMarker(place, title) {
+  const marker = new google.maps.Marker({
+    position: place,
+    map,
+    title: title,
+  });
+
+  var infowindow = new google.maps.InfoWindow({
+    content: title,
+  });
+
+  google.maps.event.addListener(marker, 'click', function () {
+    infowindow.open(map, marker);
+  });
 }
 
 window.initMap = initMap;

@@ -6,57 +6,63 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-	<title>Let's Go...</title>
+    <script src="https://kit.fontawesome.com/f41dad263a.js" crossorigin="anonymous"></script>
+	<title>musicMap.</title>
 </head>
 
 <body>
-    <header>
-        <h1>MUSIC MAP</h1>
+    <header class="has-background-info has-text-light">
+        <h1 class="is-size-1">Music Map</h1>
     </header>
 	
-    <section>
-        <div class="columns">
-            <!-- left column -->
-            <div class="column">
-                <div id="searchConatiner">
-                    <h3>Search for an event</h3>
-                    <form id="searchForm">
-                        <input id="newSearch" type="text" id="userInput" placeholder="Enter City Here">
-                        <input id="newButton" type="button" value="Search">
-                    </form>
-            
-                    <h2>Quick Search</h2>
-                    <button>Austin</button>
-                    <button>New York</button> 
-                    <button>Miami</button>
-                    <button>Columbus</button>
-                </div>
-            </div>
-            <!-- middle column -->
-            <div class="column">
-                    <div id="resultsPane">
-                        <h3 id="resultCity">Results</h3>
-                
-                        <div class="notification">
-                            <div id="resultRow">
-                                <div id="resultName">Event Name</div>
-                                <div id="resultImg">Dummy img</div>
-                                <div id="resultLoc">Location of event</div>
-                                <div id="resultDate">Date of Event</div>
-                                <div id="purchaseTickets">Buy Now</div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <!-- right column -->
-            <div class="column">
-                <div id="map"></div>
-            </div>
+    <!-- left column -->
+    <div id="leftConatiner" class="has-background-light pt-6 pb-3">
+
+        <div id="searchConatiner" class="container mb-6">
+            <form id="searchForm" class="is-flex is-justify-content-center is-flex-wrap-wrap">
+                <input type="text" class="mb-4 mx-4 pl-2 py-2" id="userInput" placeholder="Enter a city to search for a live show">
+                <input id="newButton" class="has-background-info has-text-light px-6 py-1" type="button" value="Search">
+            </form>
         </div>
-    </section>
+
+        <div id="favContainer" class="container">
+            <h3 class="is-size-3">Favorites</h3>
+
+            <ul id="quickList">
+                <li id="ql-0"></li>
+                <li id="ql-1"></li>
+                <li id="ql-2"></li>
+                <li id="ql-3"></li>
+                <li id="ql-4"></li>
+                <li id="ql-5"></li>
+                <li id="ql-6"></li>
+                <li id="ql-7"></li>
+                <li id="ql-8"></li>
+                <li id="ql-9"></li>
+            </ul>
+        </div>
+
+    </div>
+
+	
+    <!-- middle column -->
+    <div id="resultsPane" class="container pt-3">
+		<h3 id="resultCity" class="is-size-3 pb-4"></h3>
+
+        <div id="resultRow" class="columns container is-flex is-flex-wrap-wrap"></div>
+        
+	</div>
+
+   <!-- right column -->
+    <div id="mapPane">
+        <div class="pt-3 has-background-light">
+                <h3 class="is-size-3 pb-4">Find your show</h3>
+        </div>
+            <div id="map"></div>
+    </div>
 
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPgBfg8QpfQX1EYoIF0akG9hVU3m81WQ&callback=initMap&v=weekly"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqbfZP0fXb-G54Gdlvy0lbaSyvRbCp8gk&callback=initMap&v=weekly"
 		defer>
 	</script>
 

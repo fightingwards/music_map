@@ -28,6 +28,16 @@ body {
 }
 
 /* Id selectors */
+
+#userInput {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#newButton {
+  border-radius: 10px;
+}
+
 #result {
 	background-color: #0c111a;
 	border-radius: 10px;
@@ -38,6 +48,15 @@ body {
 	border-radius: 10px;
 	box-shadow: 4px 4px hsl(204, 86%, 53%);
 	word-wrap: break-word;
+}
+
+#bandImg {
+  order: -1;
+  width: 100%;
+}
+
+#evtDate, #evtTime, #evtVenue {
+  width: 100%;
 }
 
 #map {
