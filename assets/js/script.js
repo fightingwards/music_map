@@ -52,7 +52,7 @@ function secondSuperAwesome() {
         bandsHTML =
           bandsHTML +
           `
-            <div class="column is-full-mobile is-one-third-tablet is-flex is-flex-wrap-wrap is-justify-content-center">
+            <div class="column container is-full-mobile is-one-third-tablet one-quarter-desktop is-flex is-flex-wrap-wrap is-justify-content-center">
               <div id="save-${index}"><i class="fa-regular fa-heart favSave${index} mr-1"></i></div>
               <div id="evtBand" class="band">${band}</div>
               <div id="bandImg"><img src="${pic}" alt="picture of band"></div>

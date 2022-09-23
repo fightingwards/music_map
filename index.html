@@ -46,18 +46,20 @@
 
 	
     <!-- middle column -->
-    <div id="resultsPane" class="pt-3">
+    <div id="resultsPane" class="container pt-3">
 		<h3 id="resultCity" class="is-size-3 pb-4"></h3>
 
-        <div id="resultRow" class="columns is-flex is-flex-wrap-wrap"></div>
+        <div id="resultRow" class="columns container is-flex is-flex-wrap-wrap"></div>
         
 	</div>
 
    <!-- right column -->
-   <div class="pt-3 has-background-light">
-        <h3 class="is-size-3 pb-4">Find your show</h3>
-   </div>
-	<div id="map"></div>
+    <div id="mapPane" class="container">
+        <div class="pt-3 has-background-light">
+                <h3 class="is-size-3 pb-4">Find your show</h3>
+        </div>
+            <div id="map"></div>
+    </div>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqbfZP0fXb-G54Gdlvy0lbaSyvRbCp8gk&callback=initMap&v=weekly"
 		defer>
