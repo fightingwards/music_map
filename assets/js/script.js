@@ -70,10 +70,9 @@ function secondSuperAwesome() {
 
       function handleSave() {
         $(this).removeClass('fa-regular').addClass('fa-solid');
+        
         var favBand = $(this).parent().siblings('.band')[0].firstChild.data;
-
-        // var favKey = $(this).parent().attr('id');
-        // console.log(favKey);
+        var favKey = $(this).parent().attr('id');
 
         // // set local storage to the key and band name
         // localStorage.setItem(favKey, favBand);
