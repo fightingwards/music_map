@@ -11,56 +11,63 @@
 </head>
 
 <body>
-    <header class="has-background-info has-text-light">
-        <h1 class="is-size-1">Music Map</h1>
+    <header class="has-background-white">
+        <h1 class="is-size-1 has-text-white">MUSIC MAP</h1>
     </header>
 	
-    <!-- left column -->
-    <div id="leftConatiner" class="has-background-light pt-6 pb-3">
+    <section>
+        <div class="columns">
+            <div class="column">
+                <!-- left column -->
+                <div id="leftConatiner">
+                    <h3 class="is-size-3 pb-4 pt-3">Search for an event</h3>
+                    <div id="searchConatiner" class="container mb-6">
+                        <form id="searchForm" class="is-flex is-justify-content-center is-flex-wrap-wrap">
+                            <input type="text" class="mb-4 mx-4 pl-2 py-2" id="userInput" placeholder="Enter a city to search for a live show">
+                            <input id="newButton" class="has-text-white px-6 py-1" type="button" value="Search">
+                        </form>
+                    </div>
 
-        <div id="searchConatiner" class="container mb-6">
-            <form id="searchForm" class="is-flex is-justify-content-center is-flex-wrap-wrap">
-                <input type="text" class="mb-4 mx-4 pl-2 py-2" id="userInput" placeholder="Enter a city to search for a live show">
-                <input id="newButton" class="has-background-info has-text-light px-6 py-1" type="button" value="Search">
-            </form>
+                    <div id="favContainer" class="container">
+                        <h3 class="is-size-3">Favorites</h3>
+                        <div class="notification has-background-white">
+                            <ul id="quickList">
+                                <li id="ql-0"></li>
+                                <li id="ql-1"></li>
+                                <li id="ql-2"></li>
+                                <li id="ql-3"></li>
+                                <li id="ql-4"></li>
+                                <li id="ql-5"></li>
+                                <li id="ql-6"></li>
+                                <li id="ql-7"></li>
+                                <li id="ql-8"></li>
+                                <li id="ql-9"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="column">
+                <!-- middle column -->
+                <h3 class="is-size-3 pt-3 pb-4">Results</h3>
+                <div id="resultsPane" class="notification has-background-white pt-3">
+                    <h3 id="resultCity" class="is-size-3 pb-4"></h3>
+                    <div id="resultRow" class="columns container is-flex is-flex-wrap-wrap"></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <!-- right column -->
+                <div id="mapPane">
+                    <div class="pt-3">
+                            <h3 class="is-size-3 pb-4">Find your show</h3>
+                    </div>
+                        <div id="map"></div>
+                </div>
+            </div>
         </div>
-
-        <div id="favContainer" class="container">
-            <h3 class="is-size-3">Favorites</h3>
-
-            <ul id="quickList">
-                <li id="ql-0"></li>
-                <li id="ql-1"></li>
-                <li id="ql-2"></li>
-                <li id="ql-3"></li>
-                <li id="ql-4"></li>
-                <li id="ql-5"></li>
-                <li id="ql-6"></li>
-                <li id="ql-7"></li>
-                <li id="ql-8"></li>
-                <li id="ql-9"></li>
-            </ul>
-        </div>
-
-    </div>
-
-	
-    <!-- middle column -->
-    <div id="resultsPane" class="container pt-3">
-		<h3 id="resultCity" class="is-size-3 pb-4"></h3>
-
-        <div id="resultRow" class="columns container is-flex is-flex-wrap-wrap"></div>
-        
-	</div>
-
-   <!-- right column -->
-    <div id="mapPane">
-        <div class="pt-3 has-background-light">
-                <h3 class="is-size-3 pb-4">Find your show</h3>
-        </div>
-            <div id="map"></div>
-    </div>
-
+    </section>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqbfZP0fXb-G54Gdlvy0lbaSyvRbCp8gk&callback=initMap&v=weekly"
 		defer>
