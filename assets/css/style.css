@@ -2,7 +2,6 @@
 
 /* Element selectors */
 body {
-	height: 100vh;
 	text-align: center;
   background-image: url("../images/background.png");
   color: #777;
@@ -61,14 +60,13 @@ body {
 
 #map {
   height: 590px;
-  width: 400px;
 	margin-left: auto;
 	border-radius: 10px;
 	box-shadow: 4px 4px hsl(204, 86%, 53%);
 }
 
 header {
-  background-color: #fff;
+  background-color: #4aaaa5;
   border-bottom: 1px solid #ccc;
   font-size: 50px;
 }
@@ -79,7 +77,6 @@ section{
 }
 
 h1 {
-  background-color: #4aaaa5;
   color: #fff;
   font-family: Georgia, 'Times New Roman', Times, serif;
   width: 400px;
@@ -140,7 +137,6 @@ button:hover{
   border-radius: 10px;
   font-family: Arial, Helvetica, sans-serif;
   height: 30px;
-  width: 100px;
   background: #4aaaa5;
   color: #fff;
   border: 0 none;
