@@ -43,8 +43,7 @@ function secondSuperAwesome() {
       locRes.events.forEach((i) => {
         const band = i.title;
         const pic = i.performers[0].image;
-        const date = i.datetime_local.split('T').slice(0);
-        const time = i.datetime_local.split('T').slice(1);
+        const dt = i.datetime_local.split('T').slice(0);
         const venue = i.venue.name_v2;
         const local = i.venue.address + '<br>' + i.venue.extended_address;
         const tickets = i.url;
@@ -56,8 +55,8 @@ function secondSuperAwesome() {
               <div id="save-${index}"><i class="fa-regular fa-heart favSave${index} mr-1"></i></div>
               <div id="evtBand" class="band">${band}</div>
               <div id="bandImg"><img src="${pic}" alt="picture of band"></div>
-              <div id="evtDate">Date: ${date}</div> 
-              <div id="evtTime">Time: ${time}</div>
+              <div id="evtDate">Date: ${dt[0]}</div> 
+              <div id="evtTime">Time: ${dt[1]}</div>
               <div id="evtVenue">At ${venue}</div>
               <div class="mb-3" id="evtLocation">Located:<br>${local}
               <br><a id="evtTickets" href="${tickets}">Click here for Tickets!</a></div>
